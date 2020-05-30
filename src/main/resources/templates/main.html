@@ -1,6 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org"
-      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
 
 <head th:replace="fragments.html :: head"></head>
@@ -8,23 +7,23 @@
     /* Remove the navbar's default margin-bottom and rounded borders */
     .main-profile {
         margin: auto;
-        min-height:500px;
+        min-height: 500px;
         color: #FFFFFF;
         background-color: #0f4c81;
-        display:flex;
-        align-items:center;
-        text-align:center;
+        display: flex;
+        align-items: center;
+        text-align: center;
 
     }
 
-    .project_control{
-        
+    .project_control {
+
         margin: auto;
-        min-height:70px;
-        display:flex;
-        border:1px;
+        min-height: 70px;
+        display: flex;
+        border: 1px;
         padding: 20px;
-       
+
     }
 
     .card-columns {
@@ -34,30 +33,30 @@
         padding-top: 10px;
         padding-bottom: 30px;
         column-count: 2;
-        
+
         max-width: 1020px;
-       
-        
+
+
     }
-    @media(max-width: 630px){
-        .card-columns{
+
+    @media(max-width: 630px) {
+        .card-columns {
             column-count: 1;
         }
     }
 
-    .nav-profile{
+    .nav-profile {
         margin-top: 0%;
     }
-    .card{
+
+    .card {
         min-width: 200px;
         max-width: 500px;
         margin: 20px;
     }
-    
+</style>
 
-
-    </style>
-    <body>
+<body>
 
     <nav th:replace="fragments.html :: main-nav"></nav>
 
@@ -69,7 +68,8 @@
         <div class="container" th:if="${account != null && !account.emailVerified}">
             <h1 class="display-4">이메일 인증</h1>
             <p class="lead">Team#에 가입을 완료하려면 계정 인증 메일을 확인하세요.</p>
-            <button type="button" th:href="@{/check-email}" onclick="location.href='/check-email'" class="btn btn-info" >인증 메일 확인</button>
+            <button type="button" th:href="@{/check-email}" onclick="location.href='/check-email'"
+                class="btn btn-info">인증 메일 확인</button>
         </div>
 
         <div class="container" th:if="${account != null && account.emailVerified}">
@@ -119,8 +119,53 @@
         </form>
 
     </div>
+  <!-- 프로젝트생성 버튼 -->
+  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+    프로젝트 생성하기
+  </button>
+<!-- 프로젝트생성 모달 -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">프로젝트생성</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            <form>
+            <!-- 프로젝트 이름 -->
+              <div class="form-group">
+                <label for="recipient-name" class="col-form-label">프로젝트 이름:</label>
+                <input type="text" class="form-control" id="recipient-name">
+              </div>
+              <!-- 프로젝트 세부내용 -->
+              <div class="form-group">
+                <label for="recipient-name" class="col-form-label">프로젝트 설명:</label>
+                <input type="text" class="form-control" id="recipient-name">
+              </div>
+              <!-- 멤버검색 -->
+              <div class="form-group">
+                <label for="recipient-name" class="col-form-label">멤버 추가:</label>
+                <div class="input-group mb-3">
+                   
+                    <input type="text" class="form-control" placeholder="사용자 이름" aria-label="사용자 이름" aria-describedby="button-addon2">
+                    <div class="input-group-append">
+                      <button class="btn btn-outline-secondary" type="button" id="button-addon2">검색</button>
+                    </div>
+                  </div>
+                 </div>
+            </form>
+          </div>
 
-
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">취소</button>
+          <button type="button" class="btn btn-primary">프로젝트 생성</button>
+        </div>
+      </div>
+    </div>
+  </div>
 
 
 
